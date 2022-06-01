@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  redis:
+    image: docker.io/bitnami/redis:6.2
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=no
+      - REDIS_PASSWORD=password
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    ports:
+      - '6379:6379'
+    volumes:
+      - './db/redis/data:/bitnami/redis/data'
