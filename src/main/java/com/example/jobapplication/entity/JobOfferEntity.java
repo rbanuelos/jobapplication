@@ -4,14 +4,14 @@ import java.io.Serializable;
 import java.util.List;
 import org.springframework.data.redis.core.RedisHash;
 
-@RedisHash("JobApplication")
-public class JobApplicationEntity implements Serializable {
+@RedisHash("JobOffer")
+public class JobOfferEntity implements Serializable {
   private String id;
   private String title;
   private String description;
   private List<String> tags;
 
-  public JobApplicationEntity(String id, String title, String description, List<String> tags) {
+  public JobOfferEntity(String id, String title, String description, List<String> tags) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -32,5 +32,15 @@ public class JobApplicationEntity implements Serializable {
 
   public List<String> getTags() {
     return tags;
+  }
+
+  @Override
+  public String toString() {
+    return "JobOfferEntity{" +
+        "id='" + id + '\'' +
+        ", title='" + title + '\'' +
+        ", description='" + description + '\'' +
+        ", tags=" + tags +
+        '}';
   }
 }
