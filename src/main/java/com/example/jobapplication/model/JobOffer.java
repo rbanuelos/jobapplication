@@ -1,17 +1,19 @@
 package com.example.jobapplication.model;
 
-import java.util.List;
-
 public class JobOffer {
-  private String id;
+
+  private Long id;
   private String title;
   private String description;
-  private List<String> tags;
+  private String tags;
+  private Integer openApplications;
 
-  public JobOffer(String id, String title, String description, List<String> tags) {
+  public JobOffer(Long id, String title, String description, String tags,
+                  Integer openApplications) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.tags = tags;
+    this.openApplications = openApplications;
   }
 }
