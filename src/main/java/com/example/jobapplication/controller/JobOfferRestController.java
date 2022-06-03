@@ -68,10 +68,25 @@ public class JobOfferRestController {
 
   @PostMapping("/{jobOfferId}/apply")
   public ResponseEntity<Boolean> addJobApplication(@PathVariable Long jobOfferId,
-                                          @RequestBody JobApplication jobApplication) {
+                                                   @RequestBody JobApplication jobApplication) {
     return new ResponseEntity<>(
         this.jobOfferService.addJobApplication(jobOfferId, jobApplication),
         HttpStatus.CREATED
+    );
+  }
+
+  @GetMapping("/{jobOfferId}/applications")
+  public ResponseEntity<List<JobApplication>> getJobOfferApplications(
+      @PathVariable("jobOfferId") Long jobOfferId) {
+    JobOffer jobOffer = this.jobOfferService.getJobOffer(jobOfferId);
+
+    if (jobOffer == null) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    return new ResponseEntity<>(
+        this.jobOfferService.getJobApplications(jobOfferId),
+        HttpStatus.OK
     );
   }
 }

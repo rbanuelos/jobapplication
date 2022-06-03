@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -28,6 +29,7 @@ public class JobApplicationEntity implements Serializable {
   private String phone;
 
   @ManyToOne
+  @JoinColumn(name = "job_offer_id")
   private JobOfferEntity jobOffer;
 
   public JobApplicationEntity(String fullName, String address, String phone) {
@@ -42,5 +44,21 @@ public class JobApplicationEntity implements Serializable {
 
   public void setJobOffer(JobOfferEntity jobOffer) {
     this.jobOffer = jobOffer;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public String getFullName() {
+    return fullName;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public String getPhone() {
+    return phone;
   }
 }

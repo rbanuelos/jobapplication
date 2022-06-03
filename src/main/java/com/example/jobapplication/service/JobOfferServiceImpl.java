@@ -8,6 +8,7 @@ import com.example.jobapplication.repository.JobApplicationRepository;
 import com.example.jobapplication.repository.JobOfferRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -71,6 +72,14 @@ public class JobOfferServiceImpl implements JobOfferService {
     return true;
   }
 
+  @Override
+  public List<JobApplication> getJobApplications(Long jobOfferId) {
+    return this.jobApplicationRepository.findByJobOfferId(jobOfferId)
+        .stream()
+        .map(this::getJobApplicationFromEntity).collect(
+            Collectors.toList());
+  }
+
   private JobOffer getJobOfferFromEntity(JobOfferEntity jobOfferEntity) {
     return new JobOffer(
         jobOfferEntity.getId(),
@@ -79,6 +88,15 @@ public class JobOfferServiceImpl implements JobOfferService {
         jobOfferEntity.getTags(),
         jobOfferEntity.getJobApplications().size(),
         jobOfferEntity.isClosed()
+    );
+  }
+
+  private JobApplication getJobApplicationFromEntity(JobApplicationEntity jobApplicationEntity) {
+    return new JobApplication(
+        jobApplicationEntity.getId(),
+        jobApplicationEntity.getFullName(),
+        jobApplicationEntity.getAddress(),
+        jobApplicationEntity.getPhone()
     );
   }
 

@@ -36,6 +36,10 @@ public class JobOffer {
     return tags;
   }
 
+  public Integer getOpenApplications() {
+    return openApplications;
+  }
+
   public boolean isClosed() {
     return closed;
   }

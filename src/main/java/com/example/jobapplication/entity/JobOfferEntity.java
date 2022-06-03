@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class JobOfferEntity implements Serializable {
   @Column
   private String tags;
 
-  @OneToMany(mappedBy = "id")
+  @OneToMany(mappedBy = "jobOffer", fetch = FetchType.LAZY)
   private List<JobApplicationEntity> jobApplications;
 
   @Column

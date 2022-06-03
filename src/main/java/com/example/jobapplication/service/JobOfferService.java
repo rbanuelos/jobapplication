@@ -12,4 +12,6 @@ public interface JobOfferService {
   Long addJobOffer(JobOffer jobOffer);
 
   boolean addJobApplication(Long jobOfferId, JobApplication jobApplication);
+
+  List<JobApplication> getJobApplications(Long jobOfferId);
 }
