@@ -2,23 +2,50 @@ package com.example.jobapplication.entity;
 
 import java.io.Serializable;
 import java.util.List;
-import org.springframework.data.redis.core.RedisHash;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-@RedisHash("JobOffer")
+@Entity
+@Table(name = "job_offer")
 public class JobOfferEntity implements Serializable {
-  private String id;
-  private String title;
-  private String description;
-  private List<String> tags;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @Column
+  private Long id;
 
-  public JobOfferEntity(String id, String title, String description, List<String> tags) {
-    this.id = id;
+  @Column
+  private String title;
+
+  @Column
+  private String description;
+
+  @Column
+  private String tags;
+
+  @OneToMany(mappedBy = "id")
+  private List<JobApplicationEntity> jobApplications;
+
+  @Column
+  private boolean closed;
+
+  public JobOfferEntity(String title, String description, String tags,
+                        boolean closed) {
     this.title = title;
     this.description = description;
     this.tags = tags;
+    this.closed = closed;
   }
 
-  public String getId() {
+  public JobOfferEntity() {
+
+  }
+
+  public Long getId() {
     return id;
   }
 
@@ -30,17 +57,25 @@ public class JobOfferEntity implements Serializable {
     return description;
   }
 
-  public List<String> getTags() {
+  public String getTags() {
     return tags;
+  }
+
+  public boolean isClosed() {
+    return closed;
+  }
+
+  public List<JobApplicationEntity> getJobApplications() {
+    return jobApplications;
   }
 
   @Override
   public String toString() {
-    return "JobOfferEntity{" +
-        "id='" + id + '\'' +
-        ", title='" + title + '\'' +
-        ", description='" + description + '\'' +
-        ", tags=" + tags +
-        '}';
+    return "JobOfferEntity{"
+        + "id='" + id.toString() + '\''
+        + ", title='" + title + '\''
+        + ", description='" + description + '\''
+        + ", tags=" + tags
+        + '}';
   }
 }
