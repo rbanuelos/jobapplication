@@ -33,12 +33,17 @@ public class JobOfferEntity implements Serializable {
   @Column
   private boolean closed;
 
-  public JobOfferEntity(String title, String description, String tags,
-                        boolean closed) {
+  public JobOfferEntity(Long id, String title, String description, String tags) {
+    this.id = id;
     this.title = title;
     this.description = description;
     this.tags = tags;
-    this.closed = closed;
+  }
+
+  public JobOfferEntity(String title, String description, String tags) {
+    this.title = title;
+    this.description = description;
+    this.tags = tags;
   }
 
   public JobOfferEntity() {
@@ -63,6 +68,10 @@ public class JobOfferEntity implements Serializable {
 
   public boolean isClosed() {
     return closed;
+  }
+
+  public void setClosed(boolean closed) {
+    this.closed = closed;
   }
 
   public List<JobApplicationEntity> getJobApplications() {

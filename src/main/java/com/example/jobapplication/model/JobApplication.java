@@ -1,16 +1,20 @@
 package com.example.jobapplication.model;
 
 public class JobApplication {
-
   private String id;
-  private String jobOfferId;
-  private Status status;
-  private String applicantFullName;
-  private String applicantAddress;
-  private String applicantPhone;
-  private String applicantWorkExperience;
+  private String fullName;
+  private String address;
+  private String phone;
 
-  public enum Status {
-    PENDING, APPROVED, REJECTED
+  public String getFullName() {
+    return fullName;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public String getPhone() {
+    return phone;
   }
 }

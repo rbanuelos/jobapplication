@@ -1,5 +1,6 @@
 package com.example.jobapplication.service;
 
+import com.example.jobapplication.model.JobApplication;
 import com.example.jobapplication.model.JobOffer;
 import java.util.List;
 
@@ -8,4 +9,7 @@ public interface JobOfferService {
 
   JobOffer getJobOffer(Long id);
 
+  Long addJobOffer(JobOffer jobOffer);
+
+  boolean addJobApplication(Long jobOfferId, JobApplication jobApplication);
 }
