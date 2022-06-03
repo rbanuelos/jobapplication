@@ -12,3 +12,20 @@ services:
       - '6379:6379'
     volumes:
       - './db/redis/data:/bitnami/redis/data'
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - '3306:3306'
+    volumes:
+      - './db/mysql/data:/var/lib/mysql'
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8095:8080'
