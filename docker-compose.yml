@@ -23,9 +23,3 @@ services:
       - '3306:3306'
     volumes:
       - './db/mysql/data:/var/lib/mysql'
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - '8095:8080'
