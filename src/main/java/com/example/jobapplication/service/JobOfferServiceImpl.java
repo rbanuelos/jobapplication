@@ -9,8 +9,12 @@ import com.example.jobapplication.repository.JobOfferRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service implementation for job offers and applications.
+ */
 @Service
 public class JobOfferServiceImpl implements JobOfferService {
 
@@ -24,7 +28,9 @@ public class JobOfferServiceImpl implements JobOfferService {
   }
 
   @Override
+  @Cacheable(value = "getJobOffers", key = "#tags")
   public List<JobOffer> getJobOffers(List<String> tags) {
+    System.out.println("Getting list of Job Offers...");
     List<JobOffer> jobOffers = new ArrayList<>();
     this.jobOfferRepository
         .findAll()
@@ -93,7 +99,6 @@ public class JobOfferServiceImpl implements JobOfferService {
 
   private JobApplication getJobApplicationFromEntity(JobApplicationEntity jobApplicationEntity) {
     return new JobApplication(
-        jobApplicationEntity.getId(),
         jobApplicationEntity.getFullName(),
         jobApplicationEntity.getAddress(),
         jobApplicationEntity.getPhone()

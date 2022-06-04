@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * DB Entity that represents a Job Offer.
+ */
 @Entity
 @Table(name = "job_offer")
 public class JobOfferEntity implements Serializable {
@@ -34,13 +37,13 @@ public class JobOfferEntity implements Serializable {
   @Column
   private boolean closed;
 
-  public JobOfferEntity(Long id, String title, String description, String tags) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.tags = tags;
-  }
-
+  /**
+   * Class constructor.
+   *
+   * @param title job offer title
+   * @param description job offer description
+   * @param tags comma separated list of tags associated to job offer
+   */
   public JobOfferEntity(String title, String description, String tags) {
     this.title = title;
     this.description = description;

@@ -4,6 +4,9 @@ import com.example.jobapplication.model.JobApplication;
 import com.example.jobapplication.model.JobOffer;
 import java.util.List;
 
+/**
+ * Service interface that defines basic methods for CRUD operations for job offers and applications.
+ */
 public interface JobOfferService {
   List<JobOffer> getJobOffers(List<String> tags);
 

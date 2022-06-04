@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * DB Entity that represents a Job Application.
+ */
 @Entity
 @Table(name = "job_application")
 public class JobApplicationEntity implements Serializable {
@@ -32,6 +35,13 @@ public class JobApplicationEntity implements Serializable {
   @JoinColumn(name = "job_offer_id")
   private JobOfferEntity jobOffer;
 
+  /**
+   * Class constructor.
+   *
+   * @param fullName applicant's fullname
+   * @param address  applicant's address
+   * @param phone    applicant's phone
+   */
   public JobApplicationEntity(String fullName, String address, String phone) {
     this.fullName = fullName;
     this.address = address;
