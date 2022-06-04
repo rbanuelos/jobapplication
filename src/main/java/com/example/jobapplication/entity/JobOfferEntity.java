@@ -74,10 +74,6 @@ public class JobOfferEntity implements Serializable {
     return closed;
   }
 
-  public void setClosed(boolean closed) {
-    this.closed = closed;
-  }
-
   public List<JobApplicationEntity> getJobApplications() {
     return jobApplications;
   }

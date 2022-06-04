@@ -27,6 +27,13 @@ public class JobOfferServiceImpl implements JobOfferService {
     this.jobApplicationRepository = jobApplicationRepository;
   }
 
+  /**
+   * Service method to get job offers. This is the only cacheable method in the app. It uses the
+   * tags parameter to save results for that particular search.
+   *
+   * @param tags list of tags to filter results
+   * @return list of job offers
+   */
   @Override
   @Cacheable(value = "getJobOffers", key = "#tags")
   public List<JobOffer> getJobOffers(List<String> tags) {

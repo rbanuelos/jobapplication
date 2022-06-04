@@ -7,13 +7,13 @@ import java.io.Serializable;
  */
 public class JobOffer implements Serializable {
 
-  private Long id;
-  private String title;
-  private String description;
-  private String tags;
+  private final Long id;
+  private final String title;
+  private final String description;
+  private final String tags;
 
-  private boolean closed;
-  private Integer openApplications;
+  private final boolean closed;
+  private final Integer openApplications;
 
   /**
    * Class constructor.
@@ -35,10 +35,6 @@ public class JobOffer implements Serializable {
     this.openApplications = openApplications;
   }
 
-  public Long getId() {
-    return id;
-  }
-
   public String getTitle() {
     return title;
   }
@@ -51,11 +47,4 @@ public class JobOffer implements Serializable {
     return tags;
   }
 
-  public Integer getOpenApplications() {
-    return openApplications;
-  }
-
-  public boolean isClosed() {
-    return closed;
-  }
 }
