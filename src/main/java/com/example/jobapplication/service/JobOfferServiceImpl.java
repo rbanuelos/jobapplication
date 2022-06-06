@@ -64,13 +64,12 @@ public class JobOfferServiceImpl implements JobOfferService {
   }
 
   /**
-   * Add a new Job Offer to the DB. It disables any existing cache entry for that search.
+   * Add a new Job Offer to the DB.
    *
    * @param jobOffer a new Job Offer
    * @return the identifier of the new entity created
    */
   @Override
-  @CacheEvict(value = "getJobOffers", key = "#jobOffer.tags")
   public Long addJobOffer(JobOffer jobOffer) {
     return this.jobOfferRepository.save(
         this.getEntityFromJobOffer(jobOffer)
@@ -78,6 +77,7 @@ public class JobOfferServiceImpl implements JobOfferService {
   }
 
   @Override
+  @CacheEvict(value = "getJobApplications", key = "#jobOfferId")
   public boolean addJobApplication(Long jobOfferId, JobApplication jobApplication) {
     JobOfferEntity jobOfferEntity = this.jobOfferRepository.findById(jobOfferId).orElse(null);
 
@@ -94,6 +94,7 @@ public class JobOfferServiceImpl implements JobOfferService {
   }
 
   @Override
+  @Cacheable(value = "getJobApplications", key = "#jobOfferId")
   public List<JobApplication> getJobApplications(Long jobOfferId) {
     return this.jobApplicationRepository.findByJobOfferId(jobOfferId)
         .stream()
