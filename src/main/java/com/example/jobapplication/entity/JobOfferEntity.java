@@ -1,6 +1,7 @@
 package com.example.jobapplication.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ public class JobOfferEntity implements Serializable {
   private String tags;
 
   @OneToMany(mappedBy = "jobOffer", fetch = FetchType.LAZY)
-  private List<JobApplicationEntity> jobApplications;
+  private List<JobApplicationEntity> jobApplications = new ArrayList<>();
 
   @Column
   private boolean closed;
