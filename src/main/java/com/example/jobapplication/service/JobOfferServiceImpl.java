@@ -9,6 +9,7 @@ import com.example.jobapplication.repository.JobOfferRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -62,7 +63,14 @@ public class JobOfferServiceImpl implements JobOfferService {
         .orElse(null);
   }
 
+  /**
+   * Add a new Job Offer to the DB. It disables any existing cache entry for that search.
+   *
+   * @param jobOffer a new Job Offer
+   * @return the identifier of the new entity created
+   */
   @Override
+  @CacheEvict(value = "getJobOffers", key = "#jobOffer.tags")
   public Long addJobOffer(JobOffer jobOffer) {
     return this.jobOfferRepository.save(
         this.getEntityFromJobOffer(jobOffer)
