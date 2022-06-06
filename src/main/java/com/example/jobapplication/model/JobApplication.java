@@ -6,6 +6,9 @@ import java.io.Serializable;
  * Class that represent a job application.
  */
 public class JobApplication implements Serializable {
+
+  private static final long serialVersionUID = 22222L;
+
   private final String fullName;
   private final String address;
   private final String phone;

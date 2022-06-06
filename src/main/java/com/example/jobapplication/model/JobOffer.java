@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class JobOffer implements Serializable {
 
+  private static final long serialVersionUID = 11111L;
+
   private final Long id;
   private final String title;
   private final String description;
